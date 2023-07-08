@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admin.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200&display=swap" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link rel="icon" type="image/x-icon" href="Assets/favicon.ico">
+    <title>ISP | Admin Panel</title>
+</head>
+<body style="font-family: 'Inter Tight',sans-serif;">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#top"><img src="Assets/logo1.png" alt="" height="40px"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#usd">User details</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Plans</a>
+                        </li>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="container">
+            <h2 style="padding: 30px 0px 30px 0px ;" id="usd">Users Details</h2>
+            <p></p>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Customer Id</th>
+                        <th>AccountNo</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Contact</th>
+                        <th>Created At</th>
+                    </tr>
+                </thead>
+                <tbody id="customerTableBody">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container">
+            <h2 style="padding: 100px 0px 30px 0px ;" id="usd">Plans Details</h2>
+            <p></p>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Plan Id</th>
+                        <th>Plan Name</th>
+                        <th>Speed</th>
+                        <th>Validity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody id="packageTableBody">
+                </tbody>
+            </table>
+        </div>
+
+        <script>
+            $.ajax({
+                url: "http://localhost:3000/allAccounts",
+                type: "GET",
+                success: function (data) {
+                    console.log(data);
+                    if (data.length > 0) {
+                        let tableData = '';
+                        data.map(d => {
+                            tableData = `${tableData}<tr><td contenteditable='false'>${d.cid}</td><td contenteditable='false'>${d.accountNo}</td><td contenteditable='false'>${d.name}</td><td contenteditable='false'>${d.email}</td><td contenteditable='false'>${d.contact}</td><td>${d.createdAt}</td></tr>`;
+                        })
+                        $("#customerTableBody").html(tableData);
+                    } else {
+                        $("#customerTableBody").html("<tr><td colspan=4></td></tr>");
+                    }
+                }
+            })
+
+            $.ajax({
+                url: "http://localhost:3000/allPackages",
+                type: "GET",
+                success: function (data) {
+                    console.log(data);
+                    if (data.length > 0) {
+                        let tableData = '';
+                        data.map(d => {
+                            tableData = `${tableData}<tr><td>${d._id}</td><td contenteditable='false'>${d.pname}</td><td contenteditable='false'>${d.speed}</td><td contenteditable='false'>${d.validity}</td><td contenteditable='false'>${d.price}</td><td><img src="./Assets/edit.png" class='edit'> | <img src="./Assets/delete.png" class='delete'></td> </tr>`;
+                        })
+                        $("#packageTableBody").html(tableData);
+                    } else {
+                        $("#packageTableBody").html("<tr><td colspan=4></td></tr>");
+                    }
+                }
+            })
+
+            $("#packageTableBody").on("click",".edit",function(){
+                let tr=$(this).closest("tr");
+                tr.find("td:eq(1)").attr("contenteditable",true).css({"border":"1px solid black"});
+                tr.find("td:eq(2)").attr("contenteditable",true).css({"border":"1px solid black"});
+                tr.find("td:eq(3)").attr("contenteditable",true).css({"border":"1px solid black"});
+                tr.find("td:eq(4)").attr("contenteditable",true).css({"border":"1px solid black"});
+            });
+
+
+            $("#packageTableBody").on("click",".delete",function(){
+                let tr=$(this).closest("tr");
+                let pid=tr.find("td:eq(0)").text();
+                $.ajax({
+                    url:"http://localhost:3000/deletePackage",
+                    type:"DELETE",
+                    data:{pid:pid},
+                    success: function (response) {
+                        console.log(response);
+                        if (response.status == 200) {
+                           alert('Package Deleted');
+                           window.location.reload();
+                        } else {
+                            alert('Error occured, please check logs');
+                        }
+                    }
+                })
+                window.location.reload();
+            });
+
+            $("#packageTableBody").on("click",".save",function(){
+                let tr=$(this).closest("tr");
+                let pid=tr.find("td:eq(0)").text();
+                let pname=tr.find("td:eq(1)").text();
+                let speed=tr.find("td:eq(2)").text();
+                let validity=tr.find("td:eq(3)").text();
+                let price=tr.find("td:eq(4)").text();
+
+                $.ajax({
+                    url:"http://localhost:3000/updatePackage",
+                    type:"POST",
+                    data:{pid:pid,pname:pname,speed:speed,validity:validity,price:price},
+                    success: function (response) {
+                        console.log(response);
+                        if (response.status == 200) {
+                           alert('Package Updated');
+                           window.location.reload();
+                        } else {
+                            alert('Error occured, please check logs');
+                        }
+                    }
+                })
+
+                window.location.reload();
+            });
+        </script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="user.css">
+    <link rel="icon" type="image/x-icon" href="Assets/favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200&display=swap" rel="stylesheet">
+
+    <title>User Dashboard</title>
+</head>
+<body>
+    <!-- header section starts  -->
+
+        <header>
+            <div class="user">
+                <img src="Assets/logo1.png" alt="">
+            </div>
+
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#Profile">Profile</a></li>
+                    <li><a href="#Plans">Plans</a></li>
+                    <li><a href="http://localhost:3000/">Log out</a></li>
+                </ul>
+            </nav>
+        </header>
+
+    <!-- header section ends -->
+
+
+    <div id="menu" class="fas fa-bars"></div>
+
+    <!-- home section starts  -->
+
+    <section class="home" id="Profile">
+
+        <div class="profilecard">
+
+            <h1 class="heading">Profile</h1>
+
+            <p class="userinfo">
+                <h2>Account No. :- <small id="accno"></small></h2>
+                <h2>Name :- <small id="name"></small></h2>
+                <h2>Email :- <small id="email"></small></h2>
+                <h2>Contact No :- <small id="contact"></small></h2>
+                <h2>Created At :- <small id="createdAt"></small></h2>
+            </p>
+        </div>
+
+
+        <div class="plancard">
+
+            <h1 class="heading">Active Plan</h1>
+
+            <p class="userinfo">
+                <h2>Package name :- <small id="pname"></small></h2>
+                <h2>Speed :- <small id="speed"></small></h2>
+                <h2>Validity :- <small id="validity"></small></h2>
+                <h2>Price :- <small id="price"></small></h2>
+            </p>
+        </div>
+    </section>
+
+    <!-- home section ends -->
+
+
+    <!-- about section starts  -->
+
+        <section class="about" id="Plans">
+
+            <h1 class="heading">Plans</h1>
+    
+            <div class="row">
+                <div class="services" id="Plans">
+                    <div>
+                        <section class="pricecol">
+                            <div class="icon">
+                                <i class="icon-magic"></i>
+                            </div>
+                            <h3><Span>Basic</span></h3>
+                            <ul>
+                                <li>25Mbps</li>
+                                <li>31 Days</li>
+                                <li>Rs.1300/-</li>
+                            </ul>
+                            <p>
+                                <a class="button activate" data-pid="6376f6db819bd0ee0cbc0fd6" ><span>Select</span></a>
+                            </p>
+                        </section>
+                        
+                        <section class="pricecol">
+                            <div class="icon">
+                                <i class="icon-leaf"></i>
+                            </div>
+                            <h3><Span>Premium</span></h3>
+                            <ul>
+                                <li>100Mbps</li>
+                                <li>31 Days</li>
+                                <li>Rs.2300/-</li>
+                            </ul>
+                            <p>
+                                <a class="button activate" data-pid="6376f70e819bd0ee0cbc0fd7"><span>Select</span></a>
+                            </p>
+                        </section>
+                        
+                        <section class="pricecol">
+                            <div class="icon">
+                                <i class="icon-link"></i>
+                            </div>
+                            <h3><Span>SuperUser</span></h3>
+                            <ul>
+                                <li>150Mbps</li>
+                                <li>84 Days</li>
+                                <li>Rs.5000/-</li>
+                            </ul>
+                            <p>
+                                <a class="button activate" data-pid="6376f741819bd0ee0cbc0fd8"><span>Select</span></a>
+                            </p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+    <!-- about section ends -->
+
+    <script>
+        let urls=location.href;
+        let params=urls.split("?")[1];
+        let cid=params.split("=")[1];
+        // console.log(cid);
+
+        $.ajax({
+            url: "http://localhost:3000/details",
+            type: "GET",
+            data:{"cid":cid},
+            success: function (data) {
+                console.log("details----",data);
+                $("#name").text(data.account_details.name);
+                $("#accno").text(data.account_details.accountNo);
+                $("#contact").text(data.account_details.contact);
+                $("#email").text(data.account_details.email);
+                $("#createdAt").text(data.account_details.createdAt);
+                
+                
+                if(data.pack_details==undefined){
+                    $("#active").html("Sorry, no active plan for you, please active any.")
+                }
+                else{
+                    $("#pid").text(data.pack_details._id);
+                    $("#pname").text(data.pack_details.pname);
+                    $("#speed").text(data.pack_details.speed);
+                    $("#validity").text(data.pack_details.validity);
+                    $("#price").text(data.pack_details.price);
+                }
+            }
+            
+        });
+
+        //-----------------Updating USER PACKAGE Details----------------
+        $('.activate').click(function(){
+                $.ajax({
+                    url:"http://localhost:3000/updateAccPac",
+                    type:"POST",
+                    data:{cid:cid,pid:$(this).attr("data-pid")},
+                    success: function (response) {
+                        console.log(response);
+                        if (response.status == 200) {
+                           alert('Your package has been Updated');
+                           window.location.reload();
+                        } else {
+                            alert('Error occured, please check logs');
+                        }
+                    }
+                })
+            })
+        
+            $(".activate").click(function(){
+                console.log()
+            })
+    </script>
+</body>
+</html>

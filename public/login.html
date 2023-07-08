@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <title>Login And Registration Form</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="login.css">
+        <link rel="icon" type="image/x-icon" href="Assets/favicon.ico">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="hero">
+            <div class="form-box">
+                <div class="button-box">
+                    <div id="btn"></div>
+                    <button type="button" class="toggle-btn" onclick="login()">Log In</button>
+                    <button type="button" class="toggle-btn" onclick="register()">Register</button>
+                </div>
+                <div class="social-icons">
+                    <img src="Assets/f.png">
+                    <img src="Assets/t.png">
+                    <img src="Assets/g.png">
+                </div>
+                <form id="login" class="input-group">
+                    <input type="email" class="input-field" placeholder="Email" required id="username">
+                    <input type="password" class="input-field" placeholder="Password" required id="password">
+                    <input type="checkbox" class="chech-box"><span>Remenber Password</span>
+                    <button type="button" class="submit-btn" id="btn-login">Log In</button>
+                </form>
+                <form id="register" class="input-group">
+                    <input type="text" class="input-field" placeholder="Name" required id="name">
+                    <input type="email" class="input-field" placeholder="Email Id" required id="email">
+                    <input type="tel" class="input-field" placeholder="+91 Phone no." required id="contact">
+                    <input type="password" class="input-field" placeholder="Enter Password" required id="pwd">
+                    <input type="password" class="input-field" placeholder="Confirm Password" required id="confirm">
+                    <input type="checkbox" class="chech-box"><span>I agree to Terms & Conditions</span>
+                    <button type="button" class="submit-btn" id="btn-register">Register</button>
+                </form>
+            </div>
+            <script>
+                var x = document.getElementById("login");
+                var y = document.getElementById("register");
+                var z = document.getElementById("btn");
+
+                function register(){
+                    x.style.left = "-400px";
+                    y.style.left = "50px";
+                    z.style.left = "110px";
+                }
+                function login(){
+                    x.style.left = "50px";
+                    y.style.left = "450px";
+                    z.style.left = "0";
+                }
+
+                $('#btn-login').click(function () {
+                    let username = $('#username').val();
+                    let password = $('#password').val();
+
+                    $.ajax({
+                        url: 'http://localhost:3000/authenticate',
+                        type: 'POST',
+                        data: { username: username, password: password },
+                        success: function (response) {
+                            console.log(response);
+                            if (response.msg == 'success') {
+                                window.location.assign('/UserDashboard?cid='+response.customer_details._id);
+                            } else {
+                                alert('Invalid user, please enter valid username and password');
+                            }
+                        },
+                    });
+                });
+
+                $('#btn-register').click(function () {
+                    let name = $('#name').val();
+                    let contact = $('#contact').val();
+                    let email = $('#email').val();
+                    let pwd = $('#pwd').val();
+                    let confirm = $('#confirm').val();
+
+                    if (pwd!=confirm) {
+                        alert('Password and Confirm password not same')
+                    } else {
+                        $.ajax({
+                            url: 'http://localhost:3000/add',
+                            type: 'POST',
+                            data: { name:name, email: email, contact:contact, password: pwd },
+                            success: function (response) {
+                                console.log(response);
+                                if (response.msg == 'Customer created successfuly') {
+                                    alert('Account Created, Proceed to Login');
+                                } else {
+                                    alert('Unable to create account due to unknown error');
+                                }
+                            },
+                        });
+                    }
+                });
+
+            </script>
+        </div>
+    </body>
+</html>

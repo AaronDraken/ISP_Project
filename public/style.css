@@ -1,0 +1,389 @@
+/* html viwe scrollbar and selaction */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter Tight',sans-serif;
+  cursor: url(Assets/cursor3.png), pointer;
+}
+
+*::selection{
+  background:#ffffff;
+  color:#ffffff ;
+}
+
+html::-webkit-scrollbar{
+  width: 1rem;
+}
+
+html::-webkit-scrollbar-track{
+  background:#ffffff;
+}
+
+html::-webkit-scrollbar-thumb{
+  background:#212529;
+}
+
+
+/* Why Us? */
+
+.yus {
+  box-sizing: border-box;
+}
+
+.yus h1{
+  text-align: center;
+  padding: 6% 0px 5% 0px;
+}
+
+.yus img{
+  padding: 0px 60px 0px 0px;
+  float: right;
+  border-radius: 35% 65% 69% 31% / 53% 67% 33% 45% ;
+}
+
+.into {
+  padding: 9% 50% 0px 65px;
+}
+
+      /* 2nd img */
+.yus2 {
+  padding: 15% 0% 2% 0%;
+}
+
+.yus2 img{
+  padding: 0px 0px 0px 60px;
+  float: left;
+  border-radius: 35% 65% 69% 31% / 53% 67% 33% 45% ;
+}
+
+.into2 {
+  padding: 9% 0px 0px 55%;
+}
+
+.into2 p{
+  width: 90%;
+}
+
+      /* 3rd img */
+.yus3 {
+  padding: 15% 0% 2% 0%;
+}
+
+.yus3 img{
+  padding: 0px 60px 0px 0px;
+  float: right;
+  border-radius: 35% 65% 69% 31% / 53% 67% 33% 45% ;
+}
+
+.into3 {
+  padding: 9% 50% 0px 65px;
+}
+
+.into2 p{
+  width: 85%;
+}
+
+/* Why Us? End */
+
+
+
+/* Aboutus  */
+
+.float-main {
+  padding: 4%;
+}
+
+.abt{
+  padding: 6% 0px 0px 0px ;
+}
+
+.float-sub1 {
+  width: 50%;
+  float: left;
+  padding:0px 15px 20px 30px;
+}
+
+.float-sub2 img {
+  /* width: 50%; */
+  float: right;
+  height: 600px;
+  border-radius: 26% 74% 70% 30% / 30% 37% 63% 70% ;
+  margin: 0px 80px 0px 0px;
+  padding:0px 15px 20px 30px;
+}
+
+
+/* Aboutus end */
+
+
+/* Plans */
+
+
+.services h1 {
+padding: 10px 0px 7% 0px;
+}
+
+.services
+{
+padding: 100px 0px 30px 0px  ;
+width:1000px;
+overflow:auto;
+margin:0 auto;
+}
+.pricecol
+{
+width:31%;
+background:#212529;
+min-height:30%;
+border-radius:10px;
+position:relative;
+padding:30px 0px;
+text-align:center;
+float:left;
+margin-left:20px;
+}
+
+.icon i
+{
+font-size:30px;
+position:relative;
+top:15px;
+}
+.services h3
+{
+text-align:center;
+background:rgb(34, 43, 47);
+text-align:center;
+border-top:1px solid rgb(25, 31, 34);
+border-bottom:1px solid rgb(51, 60, 64);
+color:#fff;
+}
+h3 span
+{
+border-top:1px solid #333c40;
+border-bottom:1px solid  #191f22;
+display:block;
+padding: 10px 0px;
+font-size:20px;
+}
+.button
+{
+border-radius:34px;
+border:5px solid rgba(255, 255, 255, 0.07);
+color:#ffffff;
+font-size:16px;
+margin-top:15px;
+text-shadow: 0px 1px 0px #ffffff26;
+cursor:pointer;
+display:inline-block;
+}
+.button span
+{
+display:inline-block;
+padding:10px 15px;
+background: none repeat scroll 0% 0% #212529;
+border-radius:20px;
+box-shadow: 0px 0px 1px rgba(255, 255, 255, 0.3) inset, 0px 2px 0px rgba(255, 255, 255, 0.1) inset;
+}
+.pricecol ul
+{
+list-style-type:none;
+padding:0px;
+color:#fff;
+font-family:verdana;
+font-size:14px;
+margin:0 auto;
+text-align:center;
+width:70%;
+color:rgb(165, 174, 178);
+border-bottom:1px solid rgb(51, 60, 64);
+border-top:1px solid rgb(25, 31, 34);
+}
+.pricecol ul li
+{
+padding:10px 0px;
+border-top:1px solid rgb(51, 60, 64);
+border-bottom:1px solid rgb(25, 31, 34);
+}
+
+
+/* Plans end */
+
+
+
+/* Reviews */
+
+
+
+#Reviews {
+padding: 6% 0px 0px 0px;
+}
+
+.wrapper h1{
+  font-size: 2.5rem;
+  margin: 5% 0% 1% 0%;
+  text-align: center;
+}
+
+.team{
+  display: flex;
+  justify-content:space-evenly;
+  width: auto;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.team .team_member{
+  background: #212529;
+  margin: 0px 0px 50px 0px;
+  /* margin-bottom: 50px; */
+  width: 300px;
+  padding: 20px;
+  line-height: 20px;
+  color: #8e8b8b;  
+  position: relative;
+}
+
+.team .team_member h3{
+  color: #ffffff;
+  font-size: 26px;
+  margin-top: 50px;
+}
+
+.team .team_member p.role{
+  color: #ccc;
+  margin: 12px 0;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.team .team_member .team_img{
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.team .team_member .team_img img{
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+}
+
+
+
+
+.counter-up{
+  height: 25vh;
+  background-color: #212529;
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 0 50px;
+  margin: 0px 0px 80px 0px
+ 
+}
+
+.counter-up .content{
+  z-index: 1;
+  /* margin: 15% 0 0 0; */
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.counter-up .content .box{
+  /* border: 1px dashed rgba(255,255,255,0.6); */
+  width: calc(25% - 30px);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  padding: 0 20px;
+}
+.content .box .icon{
+  font-size: 48px;
+  color: #e6e6e6;
+}
+.content .box .counter{
+  font-size: 50px;
+  font-weight: 500;
+  color: #f2f2f2;
+  font-family: sans-serif;
+}
+.content .box .text{
+  font-weight: 400;
+  color: #ccc;
+}
+
+/* Reviews end */
+
+
+/* Footer */
+
+footer {
+background: #212529;
+padding: 40px 0;
+margin: 10% 0 0 0;
+}
+.single-content {
+text-align: center;
+padding: 115px 0;
+}
+.single-box img{
+height: 70px;
+margin: 0px 0px 10px 0;
+}
+.single-box p {
+color: #fff;
+line-height: 1.9;
+}
+.single-box h3 {
+font-size: 16px;
+font-weight: 700;
+color: #fff;
+}
+.single-box .card-area i {
+color: #ffffff;
+font-size: 20px;
+margin-right: 10px;
+}
+.single-box ul {
+list-style: none;
+padding: 0;
+}
+.single-box ul li a {
+text-decoration: none;
+color: #fff;
+line-height: 2.5;
+font-weight: 100;
+}
+.single-box h2 {
+color: #fff;
+font-size: 15px;
+font-weight: 700;
+}
+#basic-addon2 {
+background: #212529;
+color: #fff;
+}
+.socials i {
+
+color: #fff;
+font-size: 20px;
+margin-right: 10px;
+}
+.copy p{
+color: #fff;
+text-align: center;
+padding: 30px 0px 0px 0px;
+}
+
+/* Footer end */

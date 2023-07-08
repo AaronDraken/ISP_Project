@@ -1,0 +1,263 @@
+*{
+    margin:0; padding:0;
+    font-family: 'Inter Tight',sans-serif;
+    cursor: url(Assets/cursor3.png), pointer;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none; border:none;
+    text-transform: capitalize;
+    transition: all .2s linear;
+}
+
+
+
+html
+{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar
+{
+    width: 1rem;
+}
+
+html::-webkit-scrollbar-track{
+    background:#ffffff;
+}
+
+html::-webkit-scrollbar-thumb
+{
+    background:#212529;
+}
+
+body
+{
+    overflow-x: hidden;
+    padding-left: 35rem;
+}
+
+section
+{
+    min-height: 100vh;
+    padding: 10rem 5rem;
+}
+
+
+.heading
+{
+    margin:0 6rem;
+    font-size: 4rem;
+    padding:1rem;
+    border-bottom: .1rem solid #fff4;
+    color:#212529;
+}
+
+/* ////////////////////////// Nav Bar start ////////////////////////// */
+
+header
+{
+    position: fixed;
+    top:0; left:0;
+    z-index: 1000;
+    height:100%;
+    width:35rem;
+    background:#212529;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    text-align: center;
+}
+
+header .user img
+{
+    height: 8rem;
+    width: 20rem;
+    margin-bottom: 2rem;
+}
+
+header .navbar
+{
+    width:80%;
+}
+
+header .navbar ul
+{
+    list-style: none;
+    padding:1rem 3rem;
+}
+
+
+header .navbar ul li a
+{
+    display: block;
+    padding:1rem;
+    margin:1.5rem 0;
+    background:#ffffff;
+    color:#212529;
+    font-size: 2rem;
+    border-radius: 5rem;
+}
+
+header .navbar ul li a:hover
+{
+        background: linear-gradient(to right,#4fdfff,#4170fe);
+}
+
+#menu
+{
+    position: fixed;
+    top:2rem; right:2rem;
+    background:#333;
+    color:#fff;
+    cursor: pointer;
+    font-size: 2.5rem;
+    padding:1rem 1.5rem;
+    z-index: 1000;
+    display: none;
+}
+
+/* ////////////////////////// Nav Bar end ////////////////////////// */
+
+/* ////////////////////////// Profile,Active Plan start ////////////////////////// */
+
+
+.profile
+{
+    justify-content: center;
+    flex-flow: column;
+    padding: 4rem 3rem 0 4rem; 
+}
+
+.profileimg
+{
+    padding: 30px 0;
+    float: right;
+    margin: 0 70px;
+}
+
+.profilecard {
+    float: left;
+    padding: 2px 0px 0px 0px;
+}
+
+.profilecard h2
+{
+    font-size:2rem;
+    color:#212529;
+    padding: 1.5rem 0;
+}
+
+
+
+.plan
+{
+    justify-content: center;
+    flex-flow: column;
+    padding: 4rem 3rem 0 4rem; 
+}
+
+.plancard {
+    float: right;
+    padding: 2px 15% 0px 0px;
+}
+
+.plancard h2
+{
+    font-size:2rem;
+    color:#212529;
+    padding: 1.5rem 0;
+}
+
+
+/* ////////////////////////// Profile,Active Plan  end ////////////////////////// */
+
+/* ////////////////////////// Plans start ////////////////////////// */
+
+
+.services
+{
+    padding: 60px 30px 30px 0px  ;
+    width:1000px;
+    overflow:auto;
+    margin:0 auto;
+}
+    
+.pricecol
+{
+    width:31%;
+    background:#212529;
+    min-height:30%;
+    border-radius:10px;
+    position:relative;
+    padding:30px 0px;
+    text-align:center;
+    float:left;
+    margin-left:20px;
+}
+
+.services h3
+{
+    text-align:center;
+    background:rgb(34, 43, 47);
+    text-align:center;
+    border-top:1px solid rgb(25, 31, 34);
+    border-bottom:1px solid rgb(51, 60, 64);
+    color:#fff;
+}
+
+h3 span
+{
+    border-top:1px solid #333c40;
+    border-bottom:1px solid  #191f22;
+    display:block;
+    padding: 10px 0px;
+    font-size:20px;
+}
+
+.button
+{
+    border-radius:30px;
+    border:5px solid #ffffff09;
+    color:#ffffff;
+    font-size:16px;
+    margin-top:15px;
+    text-shadow: 0px 1px 0px #ffffff26;
+    cursor:pointer;
+    display:inline-block;
+}
+
+.button span
+{
+    display:inline-block;
+    padding:10px 15px;
+    background: none repeat scroll 0% 0% #212529;
+    border-radius:20px;
+    box-shadow: 0px 0px 1px rgba(255, 255, 255, 0.3) inset, 0px 2px 0px rgba(255, 255, 255, 0.1) inset;
+}
+
+.pricecol ul
+{
+    list-style-type:none;
+    padding:0px;
+    color:#fff;
+    font-family:verdana;
+    font-size:14px;
+    margin:0 auto;
+    text-align:center;
+    width:70%;
+    color:rgb(165, 174, 178);
+    border-bottom:1px solid rgb(51, 60, 64);
+    border-top:1px solid rgb(25, 31, 34);
+}
+
+.pricecol ul li
+{
+    padding:10px 0px;
+    border-top:1px solid rgb(51, 60, 64);
+    border-bottom:1px solid rgb(25, 31, 34);
+}
+
+/* ////////////////////////// Plans end ////////////////////////// */
